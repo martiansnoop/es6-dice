@@ -1,33 +1,15 @@
-// todo: SystemJS can't handle the shortened form npm uses. 
-import _  from "./node_modules/underscore/underscore";
+import {Die, LoadedDie} from "classes/Die";
 
 export function run() {
     console.log("running!");
-    var d6 = new LoadedDie(6);
+    var d20 = new Die(20);
+    var naturalOne = new LoadedDie(20, 1);
 
-    var result = d6.roll();
-    console.log(result);
+    var results = roll(d20, naturalOne);
+    console.log(results);
 }
 
-
-class Die {
-    constructor(sides) {
-        this.sides = sides;
-    }
-    roll() {
-        return random(1, this.sides);
-    }
+function roll(...dice) {
+    return dice.map(d => d.roll());
 }
 
-class LoadedDie extends Die {
-    constructor(only) {
-        this.only = only;
-    }
-    roll() {
-        return this.only;
-    }
-}
-
-function random(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
