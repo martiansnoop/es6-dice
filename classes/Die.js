@@ -18,6 +18,9 @@ export class LoadedDie extends Die {
     roll() {
         return this.only;
     }
+    toString() {
+        return super.toString() + "*";
+    }
 }
 
 function random(min, max) {
